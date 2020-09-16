@@ -1,0 +1,12 @@
+Package: MATH4773CLAG
+Type: Package
+Title: MATH 4773 Package
+Version: 0.1.0
+Author: Caleb Lagge
+Maintainer: CAleb Lagge <caleb.i.lagge-1@ou.edu>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1

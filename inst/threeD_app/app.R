@@ -1,12 +1,9 @@
 # Load libraries needed
 library(shiny)
-#library(ggplot2)
 library(purrr)
 library(rootSolve)
 source("Rcode.r")
 library(scatterplot3d)
-data(trees)
-library(plotly)
 library(plot3D)
 
 
@@ -166,15 +163,15 @@ server <- function(input, output, session) {
 
 
     persp3D(x1,x2,r_squ, axes=TRUE,scale=2, box=TRUE,
-            ticktype="detailed", xlab="xk1", ylab="xk2", zlab="r^2",
+            ticktype="detailed", xlab="xk2", ylab="xk1", zlab="r^2",
             main="R^2 value given 2 x knots")
-    inter = matrix_rsquared(x1=input$intervalroot, x2=input$intervalroot2, h=0.1, data=spruce.df)
+    inter = matrix_rsquared(x1=input$intervalroot2, x2=input$intervalroot, h=0.1, data=spruce.df)
     text3D(x = inter[1], y = inter[2],
            z = inter[3], add = TRUE,
            labels = "x", col = c("black", "red"))
     text3D(x = inter[1], y = inter[2],
            z = inter[3] + .02, add = TRUE,
-           labels = paste("x1 =", inter[1], ", x2 =", inter[2], ", R sq.=",round(inter[3],4)), col = c("black", "red"))
+           labels = paste("x1 =", inter[2], ", x2 =", inter[1], ", R sq.=",round(inter[3],4)), col = c("black", "red"))
   })
 
 

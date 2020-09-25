@@ -2,10 +2,15 @@
 #'
 #'
 #'
-#' @description Widgets, plotting areas and layouts should be mastered
+#' @description There are six widgets, two plots, and two tables.
+#' The first plot is a 2d plot that plots a linear equation onto the spruce data based on the values of x knot 1 and x knot 2.
+#' These values can be controlled by the first 2 widgets. The second plot is a 3d plot that plots r^2 values with respect to the
+#' x knot 1 and x knot 2 values. The first widget changes the detail of the 3d plot. The next two widgets control the confidence
+#' intervals of x knot 1 an x knot 2. The highest value of r^2 in the confidence intervals is plotted and the values of the x knots
+#' that correspond to said r^2 value are placed in a table. The final table s a data frame of the spruce data that was used.
 #'
-#' @details  Please note the basic structure of the server input output
-#' @return  Plots
+#' @details Change values of widgets to determine the x knots that return the highest r^2 value.
+#' @return  2 plots and two tables
 #'
 #' @section shiny:
 #' The shiny web server will run once this function is invoked and will open a web browser. You should learn how this is implemented.

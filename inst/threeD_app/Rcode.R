@@ -1,9 +1,11 @@
+spruce.df = read.csv("SPRUCE.csv")
+
 myf = function(x,xk,coef){
   coef[1]+coef[2]*(x) + coef[3]*(x-xk)*(x-xk>0)
 }
 
 rsq = function(xk,data){ # data=spruce.df
-  df=within(data, X<-(BHDiameter-xk)*(BHDiameter>xk))  
+  df=within(data, X<-(BHDiameter-xk)*(BHDiameter>xk))
   lmp=lm(Height ~ BHDiameter + X, data=df)
   tmp = summary(lmp)
   tmp$r.squared
@@ -20,24 +22,12 @@ myf2 = function(x,xk,xk2,coef){
 
 coeff = function(xk,xk2,data){ # data=spruce.df
   df=within(data, {
-            X<-(BHDiameter-xk)*(BHDiameter>xk) 
+            X<-(BHDiameter-xk)*(BHDiameter>xk)
             X2<-(BHDiameter-xk2)*(BHDiameter>xk2)
   }
-            ) 
+            )
   lmp=lm(Height ~ BHDiameter + X + X2, data=df)
   coef(lmp)
-}
-
-rsq_xk1_xk2 = function(xk1, xk2, data){
-  sp2.df=within(data, {
-    X<-(BHDiameter-xk1)*(BHDiameter>xk1) 
-    X2<-(BHDiameter-xk2)*(BHDiameter>xk2)
-  }
-  ) 
-  
-  lmp = lm(Height ~ BHDiameter + X + X2, data = sp2.df)
-  tmp=summary(lmp) # tmp holds the summary info
-  tmp$r.squared
 }
 
 
@@ -51,7 +41,7 @@ matrix_rsquared = function(x1, x2, h, data)
   for(x_1 in seq(from=x1[1], to=x1[2], by=h)){
     for(x_2 in seq(from=x2[1], to=x2[2], by=h)){
       r_2 = rsq_xk1_xk2(x_1, x_2, data)
-      
+
       if(r_2 > max_r)
       {
         max_r = r_2
@@ -64,6 +54,19 @@ matrix_rsquared = function(x1, x2, h, data)
   values = append(values, a)
   values
 }
+
+rsq_xk1_xk2_data = function(xk1, xk2){
+  sp2.df=within(spruce.df, {
+    X<-(BHDiameter-xk1)*(BHDiameter>xk1)
+    X2<-(BHDiameter-xk2)*(BHDiameter>xk2)
+  }
+  )
+
+  lmp = lm(Height ~ BHDiameter + X + X2, data = sp2.df)
+  tmp=summary(lmp) # tmp holds the summary info
+  tmp$r.squared
+}
+
 
 
 

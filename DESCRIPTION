@@ -12,3 +12,5 @@ LazyData: true
 RoxygenNote: 7.1.1
 URL: https://github.com/cil0834/MATH4773CLAG
 BugReports: https://github.com/cil0834/MATH4773CLAG/issues
+Depends: 
+    R (>= 2.10)
